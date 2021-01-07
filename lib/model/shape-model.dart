@@ -1,12 +1,7 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-
 class ShapeModel {
   int index;
-  Color color;
-  IconData icon;
+  String icon;
 
-  ShapeModel({this.index, this.color, this.icon});
+  ShapeModel({this.index, this.icon});
 }
  

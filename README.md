@@ -3,8 +3,9 @@
 A sample for Shape Matching Game.
 
 # Demo
-<img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo.gif">
+<img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo1.gif">
 
+images assets credit: freepik.com
 ## Getting Started
 
 This project is a starting point for a Flutter application.

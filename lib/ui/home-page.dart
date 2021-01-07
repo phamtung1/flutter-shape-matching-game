@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Duration _animationDuration = Duration(milliseconds: 500);
   double _top = 0.0;
   bool _isProcessing = false;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     setState(() {
       _isProcessing = true;
-      _top = -100;
+      _top = -TargetListContainer.ContainerHeight;
     });
     
     Future.delayed(Duration(milliseconds: 1000), () {

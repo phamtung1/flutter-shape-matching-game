@@ -1,35 +1,38 @@
-
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_shapes_matching_game/model/shape-model.dart';
 
+const int MaxNumberOfImages = 10;
+
 class DataHelper {
- static final List<IconData> _availableIcons = [
-  Icons.stop_circle,
-  Icons.favorite,
-  Icons.grade,
-  Icons.home,
-  Icons.cloud
-];
+//  static final List<String> _availableIcons = [
+//     "assets/images/fruits/1.png",
+//     "assets/images/fruits/2.png",
+//     "assets/images/fruits/3.png",
+//     "assets/images/fruits/4.png",
+//     "assets/images/fruits/5.png",
+//     "assets/images/fruits/6.png",
+//     "assets/images/cakes/1.png",
+//     "assets/images/cakes/2.png",
+//     "assets/images/cakes/3.png",
+//     "assets/images/cakes/4.png",
+//     "assets/images/cakes/5.png",
+//     "assets/images/cakes/6.png",
+// ];
+  
+  static List<ShapeModel> createShapeList() {
+    var random = new Random();
+    var totalItems = 2 + random.nextInt(3);
+    var items = <ShapeModel>[];
+    var folder = random.nextBool() ? "fruits" : "cakes";
+    // generate a random unique numbers
+    var list = new List<int>.generate(MaxNumberOfImages, (int index) => index + 1);
+    list.shuffle();
 
-static final List<Color> _availableColors = [
-  Colors.red,
-  Colors.green,
-  Colors.blue,
-  Colors.pink,
-  Colors.orange,
-];
+    for (var i = 0; i < totalItems; i++) {
+      items.add(ShapeModel(index: i, icon: 'assets/images/$folder/${list[i]}.png'));
+    }
 
- static List<ShapeModel> createShapeList(){
-   var random = new Random();
-   var totalItems = 2 + random.nextInt(3);
-   var items = <ShapeModel>[];
-   for(var i = 0; i < totalItems; i++)
-   {
-     items.add(ShapeModel(index: i, color: _availableColors[i], icon: _availableIcons[i]));
-   }
-
-   return items;
+    return items;
   }
 }

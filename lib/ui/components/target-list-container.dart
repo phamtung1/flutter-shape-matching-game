@@ -4,10 +4,12 @@ import 'package:provider/provider.dart';
 import 'drag-target-shape.dart';
 
 class TargetListContainer extends StatelessWidget {
-  
+  static final double ContainerHeight = 150.0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: ContainerHeight,
       decoration: new BoxDecoration(
         color: Colors.white.withOpacity(0.3),
         boxShadow: [

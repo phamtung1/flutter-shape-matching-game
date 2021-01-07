@@ -21,18 +21,18 @@ class DraggableShape extends StatelessWidget {
       childWhenDragging: Container(
         height: shapeSize,
         width: shapeSize,
-        child: Icon(data.icon, size: shapeSize, color: Colors.grey)
+        child: ImageIcon(AssetImage(data.icon), size: shapeSize, color: Colors.grey,)
       ),
       // dragging item
       feedback: Container(
         height: shapeSize,
         width: shapeSize,
-        child: Icon(data.icon, size: shapeSize, color: data.color)
+        child: Image.asset(data.icon),
       ),
       child: Container(
         height: shapeSize,
         width: shapeSize,
-        child: Icon(data.icon, size: shapeSize, color: data.color)
+        child: Image.asset(data.icon)
       ),
     );
   }

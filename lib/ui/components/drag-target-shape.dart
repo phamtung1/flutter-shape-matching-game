@@ -9,7 +9,7 @@ class DragTargetShape extends StatefulWidget {
     @required this.acceptedIcon,
   }) : super(key: key);
 
-  final IconData acceptedIcon;
+  final String acceptedIcon;
 
   _DragTargetShapeState createState() => _DragTargetShapeState();
 }
@@ -37,8 +37,8 @@ class _DragTargetShapeState extends State<DragTargetShape> {
     return Container(
       height: shapeSize,
       width: shapeSize,
-      child: Icon(widget.acceptedIcon,
-          size: shapeSize, color: droppedShape?.color ?? Colors.black54),
+      child: droppedShape == null ? ImageIcon(AssetImage(widget.acceptedIcon), size: shapeSize, color: Colors.black45) :
+       Image.asset(widget.acceptedIcon),
     );
   }
 }
