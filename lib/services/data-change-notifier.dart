@@ -6,6 +6,7 @@ import 'package:flutter_shapes_matching_game/helpers/data-helper.dart';
 import 'package:flutter/foundation.dart';
 
 class DataChangeNotifier with ChangeNotifier {
+  String _backgroundImage = '';
   double _shapeSize = 0;
   int _totalItems = 0;
   List<ShapeModel> _items;
@@ -13,6 +14,7 @@ class DataChangeNotifier with ChangeNotifier {
   List<ShapeModel> _targetItems = [];
   bool _isFinished = false;
 
+  String get backgroundImage => _backgroundImage;
   double get shapeSize => _shapeSize;
   int get totalItems => _totalItems;
   List<ShapeModel> get items => _items;
@@ -37,7 +39,9 @@ class DataChangeNotifier with ChangeNotifier {
   }
 
   initializeShapeList() {
-    _items = DataHelper.createShapeList();
+    var gameModel = DataHelper.createShapeList();
+    _backgroundImage = gameModel.backgroundImage;
+    _items = gameModel.shapeList;
     
     _droppedItems = [];
     _targetItems = _shuffle(_items);

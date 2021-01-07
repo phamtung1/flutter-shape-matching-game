@@ -45,27 +45,51 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/background.jpg
-    - assets/images/fruits/1.png
-    - assets/images/fruits/2.png
-    - assets/images/fruits/3.png
-    - assets/images/fruits/4.png
-    - assets/images/fruits/5.png
-    - assets/images/fruits/6.png
-    - assets/images/fruits/7.png
-    - assets/images/fruits/8.png
-    - assets/images/fruits/9.png
-    - assets/images/fruits/10.png
-    - assets/images/cakes/1.png
-    - assets/images/cakes/2.png
-    - assets/images/cakes/3.png
-    - assets/images/cakes/4.png
-    - assets/images/cakes/5.png
-    - assets/images/cakes/6.png
-    - assets/images/cakes/7.png
-    - assets/images/cakes/8.png
-    - assets/images/cakes/9.png
-    - assets/images/cakes/10.png
+    - assets/images/bg1.jpg
+    - assets/images/bg2.jpg
+    - assets/images/bg3.jpg
+    - assets/images/bg4.jpg
+    
+    - assets/images/1-animals/1.png
+    - assets/images/1-animals/2.png
+    - assets/images/1-animals/3.png
+    - assets/images/1-animals/4.png
+    - assets/images/1-animals/5.png
+    - assets/images/1-animals/6.png
+    - assets/images/1-animals/7.png
+    - assets/images/1-animals/8.png
+    - assets/images/1-animals/9.png
+    - assets/images/1-animals/10.png
+    - assets/images/2-cakes/1.png
+    - assets/images/2-cakes/2.png
+    - assets/images/2-cakes/3.png
+    - assets/images/2-cakes/4.png
+    - assets/images/2-cakes/5.png
+    - assets/images/2-cakes/6.png
+    - assets/images/2-cakes/7.png
+    - assets/images/2-cakes/8.png
+    - assets/images/2-cakes/9.png
+    - assets/images/2-cakes/10.png
+    - assets/images/3-fruits/1.png
+    - assets/images/3-fruits/2.png
+    - assets/images/3-fruits/3.png
+    - assets/images/3-fruits/4.png
+    - assets/images/3-fruits/5.png
+    - assets/images/3-fruits/6.png
+    - assets/images/3-fruits/7.png
+    - assets/images/3-fruits/8.png
+    - assets/images/3-fruits/9.png
+    - assets/images/3-fruits/10.png
+    - assets/images/4-insects/1.png
+    - assets/images/4-insects/2.png
+    - assets/images/4-insects/3.png
+    - assets/images/4-insects/4.png
+    - assets/images/4-insects/5.png
+    - assets/images/4-insects/6.png
+    - assets/images/4-insects/7.png
+    - assets/images/4-insects/8.png
+    - assets/images/4-insects/9.png
+    - assets/images/4-insects/10.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

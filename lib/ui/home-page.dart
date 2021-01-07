@@ -16,6 +16,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   
   @override
   Widget build(BuildContext context) {
+    var backgroundImage = Provider.of<DataChangeNotifier>(context).backgroundImage;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Shapes Matching Game"),
@@ -30,7 +32,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.jpg"),
+              image: AssetImage(backgroundImage),
               fit: BoxFit.cover),
         ),
         child: Padding(

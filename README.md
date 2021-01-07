@@ -2,6 +2,12 @@
 
 A sample for Shape Matching Game.
 
+4 image sets:
+- Animals
+- Cakes
+- Fruits
+- Insects
+
 # Demo
 <img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo1.gif">
 
