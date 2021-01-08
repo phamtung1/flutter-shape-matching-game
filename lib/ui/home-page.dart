@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     setState(() {
       _isProcessing = true;
-      _top = -TargetListContainer.ContainerHeight;
+      _top = -TargetListContainer.containerHeight;
     });
     
     Future.delayed(Duration(milliseconds: 1000), () {

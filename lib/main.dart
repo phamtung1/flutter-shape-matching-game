@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_shapes_matching_game/ui/home-page.dart';
 import 'package:provider/provider.dart';
 
 import 'services/data-change-notifier.dart';
 
 void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+          await SystemChrome.setPreferredOrientations(
+              [DeviceOrientation.portraitUp],
+          ); // To turn off landscape mode
+          
    runApp(MyApp());
 }
 
