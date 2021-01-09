@@ -1,4 +1,4 @@
-import 'package:flutter_shapes_matching_game/services/data-change-notifier.dart';
+import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -57,7 +57,7 @@ class _DraggableShape extends State<DraggableShape> {
           child: ImageIcon(
             AssetImage(data.icon),
             size: shapeSize,
-            color: Colors.grey,
+            color: Colors.grey[600],
           )),
       // dragging item
       feedback: Container(

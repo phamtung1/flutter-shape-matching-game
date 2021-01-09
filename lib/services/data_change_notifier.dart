@@ -1,6 +1,6 @@
-import 'package:flutter_shapes_matching_game/model/shape-model.dart';
+import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/helpers/data-helper.dart';
+import 'package:flutter_shapes_matching_game/helpers/data_helper.dart';
 import 'package:flutter/foundation.dart';
 
 class DataChangeNotifier with ChangeNotifier {
@@ -46,7 +46,7 @@ class DataChangeNotifier with ChangeNotifier {
     _targetItems.shuffle();
     _isFinished = false;
     _totalItems = _items.length;
-    _shapeSize = 160.0 - (_totalItems * 20);
+    _shapeSize = 180.0 - (_totalItems * 20);
     notifyListeners();
   }
 }

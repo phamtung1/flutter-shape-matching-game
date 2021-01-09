@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/services/data-change-notifier.dart';
+import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:provider/provider.dart';
-import 'drag-target-shape.dart';
+import 'drag_target_shape.dart';
 
 class TargetListContainer extends StatelessWidget {
   static const double containerHeight = 200.0;
   final Function(String) onDragged;
+  final VoidCallback onFinished;
 
   TargetListContainer({
     Key key,
     @required this.onDragged,
+    @required this.onFinished,
   }) : super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class TargetListContainer extends StatelessWidget {
     var items = Provider.of<DataChangeNotifier>(context).targetItems;
 
     for (int i = 0; i < items.length; i++) {
-      targets.add(DragTargetShape(acceptedIcon: items[i].icon, onDragged: this.onDragged));
+      targets.add(DragTargetShape(acceptedIcon: items[i].icon, onDragged: this.onDragged, onFinished: this.onFinished,));
     }
 
     return targets;

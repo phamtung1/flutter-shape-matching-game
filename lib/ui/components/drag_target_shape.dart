@@ -1,5 +1,5 @@
-import 'package:flutter_shapes_matching_game/model/shape-model.dart';
-import 'package:flutter_shapes_matching_game/services/data-change-notifier.dart';
+import 'package:flutter_shapes_matching_game/model/shape_model.dart';
+import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
@@ -11,16 +11,18 @@ class DragTargetShape extends StatefulWidget {
     Key key,
     @required this.acceptedIcon,
     @required this.onDragged,
+    @required this.onFinished,
   }) : super(key: key);
 
   final String acceptedIcon;
   final Function(String) onDragged;
+  final VoidCallback onFinished;
 
   _DragTargetShapeState createState() => _DragTargetShapeState();
 }
 
 class _DragTargetShapeState extends State<DragTargetShape> {
-  FlutterTts flutterTts = FlutterTts();
+  final FlutterTts flutterTts = FlutterTts();
   TtsState ttsState = TtsState.stopped;
 
  @override
@@ -49,12 +51,14 @@ class _DragTargetShapeState extends State<DragTargetShape> {
   Widget build(BuildContext context) {
     return DragTarget(onWillAccept: (ShapeModel data) {
       return data.icon == widget.acceptedIcon;
-    }, onAccept: (ShapeModel data) {
+    }, onAccept: (ShapeModel data) async {
       Provider.of<DataChangeNotifier>(context).dropSuccess(data.index);
-       widget.onDragged(data.name);
-       print(data.name);
-      this._speak(data.name);
-      
+      widget.onDragged(data.name);
+      await this._speak(data.name);
+      if(Provider.of<DataChangeNotifier>(context).isFinished)
+      {
+        widget.onFinished(); 
+      }
     }, builder: (context, List<ShapeModel> cd, rd) {
       var droppedShape = Provider.of<DataChangeNotifier>(context)
           .droppedItems
@@ -75,7 +79,7 @@ class _DragTargetShapeState extends State<DragTargetShape> {
     );
   }
 
-  void _speak(String text) async {
+  Future<void> _speak(String text) async {
     await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.speak(text);
   }

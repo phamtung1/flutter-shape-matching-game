@@ -7,9 +7,10 @@ A sample for Shape Matching Game.
 - Cakes
 - Fruits
 - Insects
+- Sea
 
 # Demo
-<img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo1.gif">
+<img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo2.gif">
 
 Assets:
 - Images: Designed by Freepik (www.freepik.com)

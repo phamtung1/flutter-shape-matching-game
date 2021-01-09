@@ -1,4 +1,4 @@
-import 'package:flutter_shapes_matching_game/model/shape-model.dart';
+import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 
 class GameModel {
   List<ShapeModel> shapeList;
