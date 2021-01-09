@@ -4,7 +4,13 @@ import 'package:provider/provider.dart';
 import 'drag-target-shape.dart';
 
 class TargetListContainer extends StatelessWidget {
-  static final double containerHeight = 150.0;
+  static const double containerHeight = 200.0;
+  final Function(String) onDragged;
+
+  TargetListContainer({
+    Key key,
+    @required this.onDragged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class TargetListContainer extends StatelessWidget {
     var items = Provider.of<DataChangeNotifier>(context).targetItems;
 
     for (int i = 0; i < items.length; i++) {
-      targets.add(DragTargetShape(acceptedIcon: items[i].icon));
+      targets.add(DragTargetShape(acceptedIcon: items[i].icon, onDragged: this.onDragged));
     }
 
     return targets;

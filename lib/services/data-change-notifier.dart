@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_shapes_matching_game/model/shape-model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shapes_matching_game/helpers/data-helper.dart';
@@ -44,28 +42,11 @@ class DataChangeNotifier with ChangeNotifier {
     _items = gameModel.shapeList;
     
     _droppedItems = [];
-    _targetItems = _shuffle(_items);
+    _targetItems = [...items];
+    _targetItems.shuffle();
     _isFinished = false;
     _totalItems = _items.length;
     _shapeSize = 160.0 - (_totalItems * 20);
     notifyListeners();
-  }
-
-  
-  List _shuffle(List<ShapeModel> items) {
-    List<ShapeModel> newList = [...items];
-    var random = new Random();
-
-    // Go through all elements.
-    for (var i = newList.length - 1; i > 0; i--) {
-      // Pick a pseudorandom number according to the list length
-      var n = random.nextInt(i + 1);
-
-      var temp = newList[i];
-      newList[i] = newList[n];
-      newList[n] = temp;
-    }
-
-    return newList;
   }
 }

@@ -10,9 +10,11 @@ class DragTargetShape extends StatefulWidget {
   DragTargetShape({
     Key key,
     @required this.acceptedIcon,
+    @required this.onDragged,
   }) : super(key: key);
 
   final String acceptedIcon;
+  final Function(String) onDragged;
 
   _DragTargetShapeState createState() => _DragTargetShapeState();
 }
@@ -49,7 +51,10 @@ class _DragTargetShapeState extends State<DragTargetShape> {
       return data.icon == widget.acceptedIcon;
     }, onAccept: (ShapeModel data) {
       Provider.of<DataChangeNotifier>(context).dropSuccess(data.index);
+       widget.onDragged(data.name);
+       print(data.name);
       this._speak(data.name);
+      
     }, builder: (context, List<ShapeModel> cd, rd) {
       var droppedShape = Provider.of<DataChangeNotifier>(context)
           .droppedItems

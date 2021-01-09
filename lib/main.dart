@@ -10,7 +10,7 @@ void main() async {
           await SystemChrome.setPreferredOrientations(
               [DeviceOrientation.portraitUp],
           ); // To turn off landscape mode
-          
+          SystemChrome.setEnabledSystemUIOverlays([]);
    runApp(MyApp());
 }
 

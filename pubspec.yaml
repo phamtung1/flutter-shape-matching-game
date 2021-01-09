@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   provider: ^3.0.0
   flutter_tts: ^2.0.0
+  assets_audio_player: ^2.0.13+1
 
 dev_dependencies:
   flutter_test:
@@ -91,7 +92,8 @@ flutter:
     - assets/images/4-insects/7.png
     - assets/images/4-insects/8.png
     - assets/images/4-insects/9.png
-    
+
+    - assets/audios/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

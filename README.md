@@ -11,7 +11,10 @@ A sample for Shape Matching Game.
 # Demo
 <img height="480px" width="270px" src="https://raw.githubusercontent.com/phamtung1/flutter-shape-matching-game/master/screenshots/demo1.gif">
 
-images assets credit: freepik.com
+Assets:
+- Images: Designed by Freepik (www.freepik.com)
+- Background music by CodeManu (opengameart.org)
+- Effect music from https://www.zapsplat.com“
 ## Getting Started
 
 This project is a starting point for a Flutter application.
