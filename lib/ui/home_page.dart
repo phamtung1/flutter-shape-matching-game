@@ -1,10 +1,10 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter_shapes_matching_game/services/data-change-notifier.dart';
-import 'package:flutter_shapes_matching_game/ui/components/shape-list-container.dart';
+import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
+import 'package:flutter_shapes_matching_game/ui/components/shape_list_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'components/target-list-container.dart';
+import 'components/target_list_container.dart';
 
 class HomePage extends StatefulWidget {
   static final _audioPlayer = AssetsAudioPlayer.newPlayer();
