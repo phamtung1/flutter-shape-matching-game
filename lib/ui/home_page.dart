@@ -2,10 +2,13 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter_shapes_matching_game/ui/components/shape_list_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart' as Foundation;
 
 import 'components/target_list_container.dart';
+
+enum TtsState { playing, stopped, paused, continued }
 
 class HomePage extends StatefulWidget {
   static final _audioPlayer = AssetsAudioPlayer.newPlayer();
@@ -42,6 +45,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  
+  final FlutterTts flutterTts = FlutterTts();
+  TtsState ttsState = TtsState.stopped;
+  
   static const Duration _animationDuration = Duration(milliseconds: 300);
 
   String _imageCaption = '';
@@ -49,6 +56,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   double _top = 0.0;
   bool _isProcessing = false;
   bool _isFinished = false;
+
+@override
+  initState() {
+    super.initState();
+    flutterTts.setStartHandler(() {
+      setState(() {
+        ttsState = TtsState.playing;
+      });
+    });
+
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        ttsState = TtsState.stopped;
+      });
+    });
+
+    flutterTts.setCancelHandler(() {
+      setState(() {
+        ttsState = TtsState.stopped;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +98,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+
+
+  Future<void> _speak(String text) async {
+    await flutterTts.awaitSpeakCompletion(true);
+    await flutterTts.speak(text);
   }
 
   void _onNewGame(BuildContext context) {
@@ -106,6 +142,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         duration: _animationDuration,
         child: TargetListContainer(
           onDragged: (String itemName) {
+            this._speak(itemName);
             setState(() {
               _imageCaption = itemName;
             });

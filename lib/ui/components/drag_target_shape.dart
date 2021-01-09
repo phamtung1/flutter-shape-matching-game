@@ -3,10 +3,7 @@ import 'dart:math';
 import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
-
-enum TtsState { playing, stopped, paused, continued }
 
 class DragTargetShape extends StatefulWidget {
   DragTargetShape({
@@ -25,8 +22,6 @@ class DragTargetShape extends StatefulWidget {
 
 class _DragTargetShapeState extends State<DragTargetShape>
     with TickerProviderStateMixin {
-  final FlutterTts flutterTts = FlutterTts();
-  TtsState ttsState = TtsState.stopped;
   AnimationController _animationController;
 
   @override
@@ -35,24 +30,6 @@ class _DragTargetShapeState extends State<DragTargetShape>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2))
           ..repeat(reverse: true);
-
-    flutterTts.setStartHandler(() {
-      setState(() {
-        ttsState = TtsState.playing;
-      });
-    });
-
-    flutterTts.setCompletionHandler(() {
-      setState(() {
-        ttsState = TtsState.stopped;
-      });
-    });
-
-    flutterTts.setCancelHandler(() {
-      setState(() {
-        ttsState = TtsState.stopped;
-      });
-    });
   }
 
   @override
@@ -68,7 +45,6 @@ class _DragTargetShapeState extends State<DragTargetShape>
     }, onAccept: (ShapeModel data) async {
       Provider.of<DataChangeNotifier>(context).dropSuccess(data.index);
       widget.onDragged(data.name);
-      await this._speak(data.name);
       if (Provider.of<DataChangeNotifier>(context).isFinished) {
         widget.onFinished();
       }
@@ -109,10 +85,5 @@ class _DragTargetShapeState extends State<DragTargetShape>
         ),
       );
     }
-  }
-
-  Future<void> _speak(String text) async {
-    await flutterTts.awaitSpeakCompletion(true);
-    await flutterTts.speak(text);
   }
 }
