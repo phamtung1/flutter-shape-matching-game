@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +23,19 @@ class DragTargetShape extends StatefulWidget {
   _DragTargetShapeState createState() => _DragTargetShapeState();
 }
 
-class _DragTargetShapeState extends State<DragTargetShape> {
+class _DragTargetShapeState extends State<DragTargetShape>
+    with TickerProviderStateMixin {
   final FlutterTts flutterTts = FlutterTts();
   TtsState ttsState = TtsState.stopped;
+  AnimationController _animationController;
 
- @override
+  @override
   initState() {
     super.initState();
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2))
+          ..repeat(reverse: true);
+
     flutterTts.setStartHandler(() {
       setState(() {
         ttsState = TtsState.playing;
@@ -48,6 +56,12 @@ class _DragTargetShapeState extends State<DragTargetShape> {
   }
 
   @override
+  dispose() {
+    _animationController.dispose(); // you need this
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DragTarget(onWillAccept: (ShapeModel data) {
       return data.icon == widget.acceptedIcon;
@@ -55,9 +69,8 @@ class _DragTargetShapeState extends State<DragTargetShape> {
       Provider.of<DataChangeNotifier>(context).dropSuccess(data.index);
       widget.onDragged(data.name);
       await this._speak(data.name);
-      if(Provider.of<DataChangeNotifier>(context).isFinished)
-      {
-        widget.onFinished(); 
+      if (Provider.of<DataChangeNotifier>(context).isFinished) {
+        widget.onFinished();
       }
     }, builder: (context, List<ShapeModel> cd, rd) {
       var droppedShape = Provider.of<DataChangeNotifier>(context)
@@ -71,12 +84,31 @@ class _DragTargetShapeState extends State<DragTargetShape> {
 
   Widget buildShape(ShapeModel droppedShape) {
     var shapeSize = Provider.of<DataChangeNotifier>(context).shapeSize;
-    return Container(
-      height: shapeSize,
-      width: shapeSize,
-      child: droppedShape == null ? ImageIcon(AssetImage(widget.acceptedIcon), size: shapeSize, color: Colors.black45) :
-       Image.asset(widget.acceptedIcon),
-    );
+    if (droppedShape == null) {
+      return Container(
+        height: shapeSize,
+        width: shapeSize,
+        child: ImageIcon(AssetImage(widget.acceptedIcon),
+            size: shapeSize, color: Colors.black45),
+      );
+    } else {
+      return AnimatedBuilder(
+        animation: _animationController,
+        builder: (_, child) {
+          var newAngle = sin(_animationController.value * 3.14 * 2) / 3;
+
+          return Transform.rotate(
+            angle: newAngle,
+            child: child,
+          );
+        },
+        child: Container(
+          height: shapeSize,
+          width: shapeSize,
+          child: Image.asset(widget.acceptedIcon),
+        ),
+      );
+    }
   }
 
   Future<void> _speak(String text) async {

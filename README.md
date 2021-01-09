@@ -2,7 +2,7 @@
 
 A sample for Shape Matching Game.
 
-4 image sets:
+Image sets:
 - Animals
 - Cakes
 - Fruits
