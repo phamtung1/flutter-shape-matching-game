@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-enum TtsState { playing, stopped, paused, continued }
-
 class DraggableShape extends StatefulWidget {
   final int index;
   DraggableShape({
@@ -22,7 +20,6 @@ class DraggableShape extends StatefulWidget {
 class _DraggableShape extends State<DraggableShape>
     with TickerProviderStateMixin {
   final FlutterTts flutterTts = FlutterTts();
-  TtsState ttsState = TtsState.stopped;
   AnimationController _animationController;
 
   @override
@@ -32,29 +29,11 @@ class _DraggableShape extends State<DraggableShape>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2))
           ..repeat();
-
-    flutterTts.setStartHandler(() {
-      setState(() {
-        ttsState = TtsState.playing;
-      });
-    });
-
-    flutterTts.setCompletionHandler(() {
-      setState(() {
-        ttsState = TtsState.stopped;
-      });
-    });
-
-    flutterTts.setCancelHandler(() {
-      setState(() {
-        ttsState = TtsState.stopped;
-      });
-    });
   }
 
   @override
   dispose() {
-    _animationController.dispose(); // you need this
+    _animationController.dispose();
     super.dispose();
   }
 
