@@ -11,6 +11,7 @@ class DataChangeNotifier with ChangeNotifier {
   List<ShapeModel> _droppedItems = [];
   List<ShapeModel> _targetItems = [];
   bool _isFinished = false;
+  List<String> _enabledSets = [...DataHelper.FOLDERS];
 
   String get backgroundImage => _backgroundImage;
   double get shapeSize => _shapeSize;
@@ -19,9 +20,14 @@ class DataChangeNotifier with ChangeNotifier {
   List<ShapeModel> get droppedItems => _droppedItems;
   List<ShapeModel> get targetItems => _targetItems;
   bool get isFinished => _isFinished;
+  List<String> get enabledSets => _enabledSets;
 
-  DataChangeNotifier(){
+  DataChangeNotifier() {
     this.initializeShapeList();
+  }
+
+  setEnabledImageSet(List<String> imageSets) {
+    _enabledSets = imageSets;
   }
 
   /// Drop a shape successfully by the index
@@ -37,10 +43,10 @@ class DataChangeNotifier with ChangeNotifier {
   }
 
   initializeShapeList() {
-    var gameModel = DataHelper.createShapeList();
+    var gameModel = DataHelper.createShapeList(_enabledSets);
     _backgroundImage = gameModel.backgroundImage;
     _items = gameModel.shapeList;
-    
+
     _droppedItems = [];
     _targetItems = [...items];
     _targetItems.shuffle();

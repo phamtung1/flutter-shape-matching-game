@@ -2,6 +2,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter_shapes_matching_game/ui/components/shape_list_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shapes_matching_game/ui/settings_dialog.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart' as Foundation;
@@ -45,10 +46,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  
   final FlutterTts flutterTts = FlutterTts();
   TtsState ttsState = TtsState.stopped;
-  
+
   static const Duration _animationDuration = Duration(milliseconds: 300);
 
   String _imageCaption = '';
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool _isProcessing = false;
   bool _isFinished = false;
 
-@override
+  @override
   initState() {
     super.initState();
     flutterTts.setStartHandler(() {
@@ -99,8 +99,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
   }
-
-
 
   Future<void> _speak(String text) async {
     await flutterTts.awaitSpeakCompletion(true);
@@ -184,6 +182,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
       // Music button
       Align(alignment: Alignment.bottomLeft, child: _buildMusicButton()),
+      Align(
+          alignment: Alignment.bottomRight,
+          child: _buildSettingsButton(context)),
     ];
   }
 
@@ -198,6 +199,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           "assets/images/goodjob.gif",
         ),
       ),
+    );
+  }
+
+  Widget _buildSettingsButton(BuildContext context) {
+    return IconButton(
+      iconSize: 30.0,
+      icon: Icon(Icons.settings),
+      color: Colors.blue[600],
+      onPressed: () async {
+        List<String> checkedItems = await showDialog(
+            context: context,
+            child: SettingsDialog(
+              checkedItems:
+                  Provider.of<DataChangeNotifier>(context).enabledSets,
+            ));
+
+        if (checkedItems != null && checkedItems.isNotEmpty) {
+          Provider.of<DataChangeNotifier>(context)
+              .setEnabledImageSet(checkedItems);
+          _onNewGame(context);
+        }
+      },
     );
   }
 
