@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
   }
 
   _openAndPlay() async {
-    if (Foundation.kDebugMode || _audioPlayer.isPlaying.value) {
+    if (_audioPlayer.isPlaying.value) {
       return;
     }
 

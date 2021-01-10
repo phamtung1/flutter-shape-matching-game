@@ -29,7 +29,7 @@ class _DragTargetShapeState extends State<DragTargetShape>
     super.initState();
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2))
-          ..repeat(reverse: true);
+          ..repeat();
   }
 
   @override
@@ -71,7 +71,7 @@ class _DragTargetShapeState extends State<DragTargetShape>
       return AnimatedBuilder(
         animation: _animationController,
         builder: (_, child) {
-          var newAngle = sin(_animationController.value * 3.14 * 2) / 3;
+          var newAngle = cos(_animationController.value * 3.14 * 2) / 5;
 
           return Transform.rotate(
             angle: newAngle,

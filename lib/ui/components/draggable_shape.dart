@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,13 +19,20 @@ class DraggableShape extends StatefulWidget {
   _DraggableShape createState() => _DraggableShape();
 }
 
-class _DraggableShape extends State<DraggableShape> {
-  FlutterTts flutterTts = FlutterTts();
+class _DraggableShape extends State<DraggableShape>
+    with TickerProviderStateMixin {
+  final FlutterTts flutterTts = FlutterTts();
   TtsState ttsState = TtsState.stopped;
+  AnimationController _animationController;
 
   @override
   initState() {
     super.initState();
+
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2))
+          ..repeat();
+
     flutterTts.setStartHandler(() {
       setState(() {
         ttsState = TtsState.playing;
@@ -43,6 +53,12 @@ class _DraggableShape extends State<DraggableShape> {
   }
 
   @override
+  dispose() {
+    _animationController.dispose(); // you need this
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var data = Provider.of<DataChangeNotifier>(context).items.firstWhere(
         (element) => element.index == widget.index,
@@ -50,21 +66,35 @@ class _DraggableShape extends State<DraggableShape> {
     var shapeSize = Provider.of<DataChangeNotifier>(context).shapeSize;
 
     return Draggable(
-      data: data,
-      childWhenDragging: Container(
+        data: data,
+        childWhenDragging: Container(
+            height: shapeSize,
+            width: shapeSize,
+            child: ImageIcon(
+              AssetImage(data.icon),
+              size: shapeSize,
+              color: Colors.grey[600],
+            )),
+        // dragging item
+        feedback: Container(
           height: shapeSize,
           width: shapeSize,
-          child: ImageIcon(
-            AssetImage(data.icon),
-            size: shapeSize,
-            color: Colors.grey[600],
-          )),
-      // dragging item
-      feedback: Container(
-        height: shapeSize,
-        width: shapeSize,
-        child: Image.asset(data.icon),
-      ),
+          child: Image.asset(data.icon),
+        ),
+        child: _buildChild(data, shapeSize));
+  }
+
+  Widget _buildChild(ShapeModel data, double shapeSize) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (_, child) {
+        var newAngle = cos(_animationController.value * 3.14 * 2) / 10;
+
+        return Transform.rotate(
+          angle: newAngle,
+          child: child,
+        );
+      },
       child: Container(
         height: shapeSize,
         width: shapeSize,

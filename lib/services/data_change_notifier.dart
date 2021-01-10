@@ -46,7 +46,7 @@ class DataChangeNotifier with ChangeNotifier {
     _targetItems.shuffle();
     _isFinished = false;
     _totalItems = _items.length;
-    _shapeSize = 180.0 - (_totalItems * 20);
+    _shapeSize = 170.0 - (_totalItems * 20);
     notifyListeners();
   }
 }

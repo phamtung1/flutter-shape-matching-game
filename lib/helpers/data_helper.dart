@@ -6,10 +6,10 @@ import 'package:flutter_shapes_matching_game/model/shape_model.dart';
 const int MaxNumberOfImages = 10;
 
 class DataHelper {
-  static const FOLDERS = <String>['1-animals','2-cakes', '3-fruits','4-insects','5-sea'];
+  static const FOLDERS = <String>['1-animals','2-dinos', '3-fruits','4-insects','5-sea'];
   static const ItemNames = {
     0: ['pig', 'dog', 'rhino', 'elephant', 'giraffe', 'monkey', 'zebra', 'lion', 'crocodile', 'chicken'],
-    1: ['cake','cake','cake','cake','cake','cake','cake','cake','cake','cake'],
+    1: ['parasaurolophus','allosaurus','ankylosaurus','pteranodon','brachiosaurus','kentrosaurus','stegosaurus','styracosaurus','triceratops','tyrannosaurus'],
     2: ['mango', 'watermelon', 'kiwi', 'pineapple', 'strawberry', 'apple', 'grapes', 'avocado', 'cherry', 'lettuce'],
     3: ['fly', 'worm', 'bee', 'ladybug', 'snail', 'dragonfly', 'grasshopper', 'butterfly', 'spider', 'cockroach'],
     4: ['starfish', 'crab', 'octopus', 'dolphin', 'sea turtle', 'whale', 'seahorse', 'shrimp', 'shell', 'squid'],
