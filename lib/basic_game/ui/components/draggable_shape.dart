@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter_shapes_matching_game/model/shape_model.dart';
-import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
+import 'package:flutter_shapes_matching_game/basic_game/model/shape_model.dart';
+import 'package:flutter_shapes_matching_game/basic_game/services/data_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';

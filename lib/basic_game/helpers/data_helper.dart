@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter_shapes_matching_game/model/game_model.dart';
-import 'package:flutter_shapes_matching_game/model/shape_model.dart';
+import 'package:flutter_shapes_matching_game/basic_game/model/game_model.dart';
+import 'package:flutter_shapes_matching_game/basic_game/model/shape_model.dart';
 
 const int MaxNumberOfImages = 10;
 

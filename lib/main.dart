@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shapes_matching_game/ui/home_page.dart';
+import 'package:flutter_shapes_matching_game/basic_game/services/data_change_notifier.dart';
 import 'package:provider/provider.dart';
 
-import 'services/data_change_notifier.dart';
+import 'basic_game/ui/basic_game_page.dart';
 
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         HomePageRoute: (BuildContext context) => ChangeNotifierProvider(
             create: (_) => new DataChangeNotifier(),
-            builder: (context) => DataChangeNotifier(), child: HomePage())
+            child: BasicGamePage())
       },
       initialRoute: HomePageRoute,
     );

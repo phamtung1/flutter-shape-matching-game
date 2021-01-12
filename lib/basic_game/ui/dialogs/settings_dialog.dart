@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/helpers/data_helper.dart';
+import 'package:flutter_shapes_matching_game/basic_game/helpers/data_helper.dart';
 
 class SettingsDialog extends StatefulWidget {
   final List<String> checkedItems;

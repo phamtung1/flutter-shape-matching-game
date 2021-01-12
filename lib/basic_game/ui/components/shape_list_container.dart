@@ -1,6 +1,6 @@
-import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
-import 'package:flutter_shapes_matching_game/ui/components/draggable_shape.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shapes_matching_game/basic_game/services/data_change_notifier.dart';
+import 'package:flutter_shapes_matching_game/basic_game/ui/components/draggable_shape.dart';
 import 'package:provider/provider.dart';
 
 class ShapeListContainer extends StatelessWidget {

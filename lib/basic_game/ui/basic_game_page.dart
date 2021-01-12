@@ -1,17 +1,17 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
-import 'package:flutter_shapes_matching_game/ui/components/shape_list_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/ui/dialogs/settings_dialog.dart';
+import 'package:flutter_shapes_matching_game/basic_game/services/data_change_notifier.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 
+import 'components/shape_list_container.dart';
 import 'components/target_list_container.dart';
+import 'dialogs/settings_dialog.dart';
 
-class HomePage extends StatefulWidget {
+class BasicGamePage extends StatefulWidget {
   static final _audioPlayer = AssetsAudioPlayer.newPlayer();
 
-  HomePage() {
+  BasicGamePage() {
     _openAndPlay();
   }
 
@@ -39,10 +39,10 @@ class HomePage extends StatefulWidget {
     AssetsAudioPlayer.playAndForget(Audio("assets/audios/cheer.mp3"));
   }
 
-  _HomePageState createState() => _HomePageState();
+  _BasicGamePageState createState() => _BasicGamePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _BasicGamePageState extends State<BasicGamePage> with TickerProviderStateMixin {
   final FlutterTts flutterTts = FlutterTts();
 
   static const Duration _animationDuration = Duration(milliseconds: 300);
@@ -185,12 +185,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       icon: Icon(Icons.settings),
       color: Colors.blue[600],
       onPressed: () async {
+        var enabledSets = Provider.of<DataChangeNotifier>(context).enabledSets;
         List<String> checkedItems = await showDialog(
             context: context,
-            child: SettingsDialog(
-              checkedItems:
-                  Provider.of<DataChangeNotifier>(context).enabledSets,
-            ));
+            builder: (BuildContext context) {
+              return SettingsDialog(
+              checkedItems: enabledSets,
+              );
+            }
+        );
 
         if (checkedItems != null && checkedItems.isNotEmpty) {
           Provider.of<DataChangeNotifier>(context)

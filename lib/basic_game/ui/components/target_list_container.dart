@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/services/data_change_notifier.dart';
+import 'package:flutter_shapes_matching_game/basic_game/services/data_change_notifier.dart';
 import 'package:provider/provider.dart';
 import 'drag_target_shape.dart';
 

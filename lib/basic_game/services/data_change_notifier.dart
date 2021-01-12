@@ -1,7 +1,7 @@
-import 'package:flutter_shapes_matching_game/model/shape_model.dart';
+import 'package:flutter_shapes_matching_game/basic_game/helpers/data_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shapes_matching_game/helpers/data_helper.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_shapes_matching_game/basic_game/model/shape_model.dart';
 
 class DataChangeNotifier with ChangeNotifier {
   String _backgroundImage = '';
